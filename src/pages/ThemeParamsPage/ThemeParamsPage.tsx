@@ -1,8 +1,9 @@
-import { useThemeParams } from '@telegram-apps/sdk-react';
 import type { FC } from 'react';
+
+import { useThemeParams } from '@telegram-apps/sdk-react';
 import { List } from '@telegram-apps/telegram-ui';
 
-import { DisplayData } from '@/components/DisplayData/DisplayData.tsx';
+import { DisplayData } from '../../components/DisplayData/DisplayData';
 
 export const ThemeParamsPage: FC = () => {
   const themeParams = useThemeParams();
@@ -10,16 +11,12 @@ export const ThemeParamsPage: FC = () => {
   return (
     <List>
       <DisplayData
-        rows={
-          Object
-            .entries(themeParams.getState())
-            .map(([title, value]) => ({
-              title: title
-                .replace(/[A-Z]/g, (m) => `_${m.toLowerCase()}`)
-                .replace(/background/, 'bg'),
-              value,
-            }))
-        }
+        rows={Object.entries(themeParams.getState()).map(([title, value]) => ({
+          title: title
+            .replace(/[A-Z]/g, (m) => `_${m.toLowerCase()}`)
+            .replace(/background/, "bg"),
+          value,
+        }))}
       />
     </List>
   );
